@@ -1,0 +1,148 @@
+import React, { useState } from 'react'
+
+function SignUpAndLogin() {
+    const [visible,setVisible]=useState(true)
+  return (
+    <div>
+
+        {visible===true?
+        <div>
+<div class=" z-30">
+  <section class="rounded-md bg-transparent">
+    <div class="flex items-center justify-center p-2 ">
+      <div class="xl:mx-auto  py-2 xl:w-full xl:max-w-sm 2xl:max-w-md">
+        <div class="mb-2"></div>
+        <h2 class="text-2xl font-bold leading-tight  bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+          Sign up to create account
+        </h2>
+        <p class="mt-2 text-base text-gray-700">
+          Already have an account? <span onClick={()=>setVisible(false)} className='text-blue-900 cursor-pointer font-bold'> Sign In</span>
+        </p>
+        <form class="mt-5">
+          <div class="space-y-4">
+            <div>
+              <label class="text-base font-medium text-gray-900">
+                User Name
+              </label>
+              <div class="mt-2">
+                <input
+                  placeholder="Full Name"
+                  type="text"
+                  class="flex h-10 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  name="user_name"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-base font-medium text-gray-900">
+                Email address
+              </label>
+              <div class="mt-2">
+                <input
+                  placeholder="Email"
+                  type="email"
+                  class="flex h-10 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  name="email"
+                />
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between">
+                <label class="text-base font-medium text-gray-900">
+                  Password
+                </label>
+              </div>
+              <div class="mt-2">
+                <input
+                  placeholder="Password"
+                  type="password"
+                  class="flex h-10 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  name="password"
+                />
+              </div>
+             
+             
+            </div>
+            <div>
+              <button
+                class=" z-20 inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80   bg-gradient-to-br from-yellow-200 via-orange-600 to-purple-800"
+                type="button"
+              >
+                Create Account
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+        </div>
+: <div>
+<div class=" z-30 mt-10">
+  <section class="rounded-md bg-transparent">
+    <div class="flex items-center justify-center p-2 ">
+      <div class="xl:mx-auto  py-2 xl:w-full xl:max-w-sm 2xl:max-w-md">
+        <div class="mb-2"></div>
+        <h2 class="text-2xl font-bold leading-tight  bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+          Login to Your account
+        </h2>
+        <p class="mt-2 text-base text-gray-700">
+          Don't have an account? <span onClick={()=>setVisible(true)} className='text-blue-900 font-bold cursor-pointer'> Sign Up</span>
+        </p>
+        <form class="mt-5">
+          <div class="space-y-4">
+       
+            <div>
+              <label class="text-base font-medium text-gray-900">
+                Email address
+              </label>
+              <div class="mt-2">
+                <input
+                  placeholder="Email"
+                  type="email"
+                  class="flex h-10 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  name="email"
+                />
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between">
+                <label class="text-base font-medium text-gray-900">
+                  Password
+                </label>
+              </div>
+              <div class="mt-2">
+                <input
+                  placeholder="Password"
+                  type="password"
+                  class="flex h-10 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  name="password"
+                />
+              </div>
+             
+             
+            </div>
+            <div>
+              <button
+                class=" z-20 inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80   bg-gradient-to-br from-yellow-200 via-orange-600 to-purple-800"
+                type="button"
+              >
+             Sign In
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+        }
+        
+      
+    </div>
+  )
+}
+
+export default SignUpAndLogin
