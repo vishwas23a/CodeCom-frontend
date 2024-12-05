@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-
-import {Slide, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Slide, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function SignUpAndLogin() {
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
   const [userData, setUserData] = useState({
     name: "",
@@ -14,27 +16,33 @@ function SignUpAndLogin() {
     console.log("login");
   };
   const handleSignUp = (e) => {
-  
-    try {
-
-      e.preventDefault();
-    
-    console.log("signup", userData);
+    e.preventDefault();
     if (!userData.name || !userData.email || !userData.password) {
-      throw new Error("All fields are required"); 
+      toast.error("All fields are required", { autoClose: 1000 });
+      return;
     }
+    try {
+      axios
+        .post("http://localhost:2024/api/auth/signup", userData)
+        .then((resp) => {
+          console.log("response", resp);
+          console.log("data", userData);
 
-    setUserData({
-      name: "",
-      password: "",
-      email: "",
-    })
-    toast.success("Account created successfully",{autoClose:1000})
-  }
-    catch (error) {
-      console.log("error");
-      toast.error("Error creating account",{autoClose:1000})
-      
+          setUserData({
+            name: "",
+            password: "",
+            email: "",
+          });
+          toast.success("Account created successfully", { autoClose: 1000 });
+        });
+    
+          setTimeout(() => {
+            navigate('verifyEmailPage')
+          }, 2000);
+        
+    } catch (error) {
+      console.log("error", error);
+      toast.error("Error creating account", { autoClose: 1000 });
     }
   };
   const handleInput = (e) => {
@@ -47,7 +55,7 @@ function SignUpAndLogin() {
 
   return (
     <div>
-       <ToastContainer position="top-right" transition={Slide} />
+      <ToastContainer position="top-right" transition={Slide} />
       {visible === true ? (
         <div>
           <div class=" z-30">
@@ -121,7 +129,7 @@ function SignUpAndLogin() {
                         <button
                           onClick={handleSignUp}
                           class=" z-20 inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80   bg-gradient-to-br from-yellow-200 via-orange-600 to-purple-800"
-                          type="button"
+                          type="submit"
                         >
                           Create Account
                         </button>
