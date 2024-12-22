@@ -11,14 +11,48 @@ function SignUpAndLogin() {
     password: "",
     email: "",
   });
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("login");
+
+    console.log(userData.email, userData.password);
+
+    if (!userData.email || !userData.password) {
+      toast.error("All fields are required", { autoClose: 1000 });
+      return;
+    }
+    try {
+      const resp = await axios.post(
+        "http://localhost:2024/api/auth/login",
+        userData,{withCredentials: true}
+      );
+
+      console.log("response", resp);
+      console.log("data", userData);
+      toast.success("Logged in successfully", { autoClose: 1000 });
+      setUserData({
+        name: "",
+        password: "",
+        email: "",
+      });
+
+      setTimeout(() => {
+        navigate("Navbar");
+      }, 2000);
+    } catch (error) {
+      console.log("failed");
+      toast.error("Failed to login", { autoClose: 1000 });
+    }
   };
   const handleSignUp = (e) => {
     e.preventDefault();
     if (!userData.name || !userData.email || !userData.password) {
       toast.error("All fields are required", { autoClose: 1000 });
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(userData.email)) {
+      toast.error("Please enter a valid email address", { autoClose: 1000 });
       return;
     }
     try {
@@ -27,19 +61,17 @@ function SignUpAndLogin() {
         .then((resp) => {
           console.log("response", resp);
           console.log("data", userData);
-
+          toast.success("Account created successfully", { autoClose: 1000 });
           setUserData({
             name: "",
             password: "",
             email: "",
           });
-          toast.success("Account created successfully", { autoClose: 1000 });
         });
-    
-          setTimeout(() => {
-            navigate('verifyEmailPage')
-          }, 2000);
-        
+
+      setTimeout(() => {
+        navigate("verifyEmailPage");
+      }, 3000);
     } catch (error) {
       console.log("error", error);
       toast.error("Error creating account", { autoClose: 1000 });
@@ -116,6 +148,7 @@ function SignUpAndLogin() {
                         </div>
                         <div class="mt-2">
                           <input
+                            autocomplete="current-password"
                             placeholder="Password"
                             type="current-password"
                             onChange={handleInput}
@@ -171,6 +204,7 @@ function SignUpAndLogin() {
                           <input
                             placeholder="Email"
                             type="email"
+                            onChange={handleInput}
                             class="flex h-10 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                             name="email"
                           />
@@ -184,16 +218,25 @@ function SignUpAndLogin() {
                         </div>
                         <div class="mt-2">
                           <input
+                            autocomplete="current-password"
                             placeholder="Password"
                             type="password"
+                            onChange={handleInput}
                             class="flex h-10 w-full rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                             name="password"
                           />
                         </div>
                       </div>
                       <div>
+                        <h2 className="text-zinc-700">
+                          Forgot Password ?{" "}
+                          <span className=" font-bold text-blue-900 cursor-pointer">
+                            click here
+                          </span>
+                        </h2>
                         <button
-                          class=" inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80   bg-gradient-to-br from-yellow-200 via-orange-600 to-purple-800"
+                          onClick={handleLogin}
+                          class=" inline-flex mt-2  w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80   bg-gradient-to-br from-yellow-200 via-orange-600 to-purple-800"
                           type="button"
                         >
                           Sign In

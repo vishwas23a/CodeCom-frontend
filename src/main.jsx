@@ -4,19 +4,52 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter } from 'react-router-dom'
 import VerifyEmailPage from './components/VerifyEmailPage.jsx'
+import Dashboard from './components/Dashboard.jsx'
 import { RouterProvider } from 'react-router'
+import Home from './components/Home.jsx'
+import Navbar from './components/Navbar.jsx'
+import About from './components/About.jsx'
+import Contact from './components/Contact.jsx'
+import UserProfile from './components/UserProfile.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
   },
+ 
   {
     path: 'VerifyEmailPage',
     element:<VerifyEmailPage/>
     
- 
-  }
+  },
+  {
+    path:"Navbar",
+    element:<Navbar/>,
+    children:[
+      {
+        path: '',
+        element: <Dashboard />
+      },
+      {
+        path: 'Home',
+        element: <Dashboard />
+      },
+      {
+        path: 'About',
+        element: <About/>
+      },
+      {
+        path: 'Contact',
+        element: <Contact/>
+      },
+      {
+        path: 'UserProfile',
+        element: <UserProfile/>
+      }
+    ]
+  },
+
 ])
 
 createRoot(document.getElementById('root')).render(

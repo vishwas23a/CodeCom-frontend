@@ -62,37 +62,37 @@ function Home() {
   }, [formRef]);
   return (
     <>
-      <div className="min-h-screen w-full p-10    bg-gradient-to-br from-yellow-100 via-orange-100 to-purple-200  relative overflow-hidden">
+      <div className="min-h-screen w-full p-10      relative overflow-hidden">
         <div className="  ">
-          <Frame
-            color="bg-red-400"
-            size="w-48 h-48"
-            top="-5%"
-            left="5%"
-            delay={0}
-          />
-          <Frame
-            color="bg-green-400"
-            size="w-48 h-48"
-            top="-5%"
-            left="60%"
-            delay={2}
-          />
+            <Frame
+              color="bg-red-400"
+              size="w-48 h-48"
+              top="-5%"
+              left="5%"
+              delay={0}
+            />
+            <Frame
+              color="bg-green-400"
+              size="w-48 h-48"
+              top="-5%"
+              left="60%"
+              delay={2}
+            />
 
-          <Frame
-            color="bg-green-400"
-            size="w-48 h-48"
-            top="60%"
-            left="5%"
-            delay={1}
-          />
-          <Frame
-            color="bg-red-400"
-            size="w-48 h-48"
-            top="60%"
-            left="80%"
-            delay={5}
-          />
+            <Frame
+              color="bg-green-400"
+              size="w-48 h-48"
+              top="60%"
+              left="5%"
+              delay={1}
+            />
+            <Frame
+              color="bg-red-400"
+              size="w-48 h-48"
+              top="60%"
+              left="80%"
+              delay={5}
+            />
         </div>
 
         <div className="border   border-orange-200 w-full h-[500px] rounded-xl ">
