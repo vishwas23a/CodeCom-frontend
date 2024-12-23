@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import userBack from "../images/userBack.png";
 import axios from "axios";
 import UserProfileCard from "./userProfileCard";
+import UserEditCard from "./UserEditCard";
 
 function UserProfile() {
+
   const [visible,setVisible]=useState(true) 
   const [userData, setUserData]=useState(
     {
@@ -22,7 +24,8 @@ function UserProfile() {
         setUserData(
           {
             name:resp.data.name,
-           email:resp.data.email
+           email:resp.data.email,
+           number:resp.data.number
           }
         )
       } catch (error) {
@@ -33,7 +36,9 @@ function UserProfile() {
          
   }
   fetchedData();  
-},[])  
+},[userData])  
+
+
   return (
     <div>
       <img
@@ -49,12 +54,15 @@ function UserProfile() {
 <UserProfileCard 
 userName={userData.name}
 userEmail={userData.email}
-userNumber=""
+userNumber={userData.number}
 userImage=""
 visibleValue={()=>setVisible(false)}
 />
           :
-           <div className="rounded-xl p-2 shadow-lg w-4/5 bg-white ">hello2</div>
+           <UserEditCard 
+           userInputEmail={userData.email}
+           visibility={()=>setVisible(true)}
+           />
           }
           <div className=" flex flex-col justify-between  w-full ">
             <div className=" bg-white h-52 shadow-lg  w-full rounded-xl ">

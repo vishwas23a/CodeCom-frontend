@@ -148,7 +148,7 @@ function SignUpAndLogin() {
                         </div>
                         <div class="mt-2">
                           <input
-                            autocomplete="current-password"
+                            autoComplete="current-password"
                             placeholder="Password"
                             type="current-password"
                             onChange={handleInput}

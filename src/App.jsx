@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 
 
 import Home from './components/Home'
-import Cursor from './components/Cursor'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
    <Home/>
-{/* <Cursor/> */}
+
     </>
   )
 }
