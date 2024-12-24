@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import userBack from "../images/userBack.png";
 import axios from "axios";
-import UserProfileCard from "./userProfileCard";
+import UserProfileCard from "./UserProfileCard";
 import UserEditCard from "./UserEditCard";
 
 function UserProfile() {
