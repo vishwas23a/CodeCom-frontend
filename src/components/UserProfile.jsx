@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import userBack from "../images/userBack.png";
 import axios from "axios";
-import UserProfileCard from "./UserProfileCard";
+
 import UserEditCard from "./UserEditCard";
+import UserProfileCardd from "./UserProfileCardd";
 
 function UserProfile() {
 
@@ -51,7 +52,7 @@ function UserProfile() {
         <div className=" rounded-3xl w-[85%] mt-10  bg-opacity-10 bg-black  h-[85%] flex gap-8 p-8">
           {visible ===true ?
 
-<UserProfileCard 
+<UserProfileCardd 
 userName={userData.name}
 userEmail={userData.email}
 userNumber={userData.number}
