@@ -15,7 +15,7 @@ function Dashboard() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:2024/api/auth/check-Auth", {
+        await axios.get("https://codecom-backend.onrender.com/api/auth/check-Auth", {
           withCredentials: true,
         });
       } catch (error) {
