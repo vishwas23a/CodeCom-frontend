@@ -15,9 +15,12 @@ function Dashboard() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("https://codecom-backend.onrender.com/api/auth/check-Auth", {
-          withCredentials: true,
-        });
+        await axios.get(
+          "https://codecom-backend.onrender.com/api/auth/check-Auth",
+          {
+            withCredentials: true,
+          }
+        );
       } catch (error) {
         console.error("User not logged in", error);
         navigate("/");
@@ -110,7 +113,11 @@ function Dashboard() {
               Join Community
             </h4>
             <div>
-              <input type="text" placeholder="Enter Code" className="p-2 border-gray-300 border-2 rounded mt-4 " />
+              <input
+                type="text"
+                placeholder="Enter Code"
+                className="p-2 border-gray-300 border-2 rounded mt-4 "
+              />
             </div>
 
             <div class=" pb-2 flex justify-center">

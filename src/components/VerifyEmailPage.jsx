@@ -12,7 +12,7 @@ function VerifyEmailPage() {
     e.preventDefault();
     try {
     await  axios
-        .post("http://localhost:2024/api/auth/verify-email", {code:inputData})
+        .post("https://codecom-backend.onrender.com/api/auth/verify-email", {code:inputData})
         .then((response) => {
           console.log(response);
   

@@ -43,7 +43,7 @@ function SignUpAndLogin() {
       toast.error("Failed to login", { autoClose: 1000 });
     }
   };
-  const handleSignUp = (e) => {
+  const handleSignUp =async (e) => {
     e.preventDefault();
     if (!userData.name || !userData.email || !userData.password) {
       toast.error("All fields are required", { autoClose: 1000 });
@@ -56,9 +56,9 @@ function SignUpAndLogin() {
       return;
     }
     try {
-      axios
+      const resp=await axios
         .post("https://codecom-backend.onrender.com/api/auth/signup", userData)
-        .then((resp) => {
+      
           console.log("response", resp);
           console.log("data", userData);
           toast.success("Account created successfully", { autoClose: 1000 });
@@ -67,7 +67,7 @@ function SignUpAndLogin() {
             password: "",
             email: "",
           });
-        });
+       
 
       setTimeout(() => {
         navigate("verifyEmailPage");
