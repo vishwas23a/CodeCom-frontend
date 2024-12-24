@@ -20,7 +20,7 @@ function UserProfile() {
       try {
         console.log("hello");
         
-        const resp= await axios.get("http://localhost:2024/api/user/userProfile",{withCredentials:true})
+        const resp= await axios.get("https://codecom-backend.onrender.com/user/userProfile",{withCredentials:true})
         console.log(resp.data);
         setUserData(
           {
