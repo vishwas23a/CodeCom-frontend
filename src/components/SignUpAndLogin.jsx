@@ -23,7 +23,8 @@ function SignUpAndLogin() {
     try {
       const resp = await axios.post(
         "https://codecom-backend.onrender.com/api/auth/login",
-        userData,{withCredentials: true}
+        userData,
+        { withCredentials: true }
       );
 
       console.log("response", resp);
@@ -43,7 +44,7 @@ function SignUpAndLogin() {
       toast.error("Failed to login", { autoClose: 1000 });
     }
   };
-  const handleSignUp =async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     if (!userData.name || !userData.email || !userData.password) {
       toast.error("All fields are required", { autoClose: 1000 });
@@ -56,18 +57,19 @@ function SignUpAndLogin() {
       return;
     }
     try {
-      const resp=await axios
-        .post("https://codecom-backend.onrender.com/api/auth/signup", userData)
-      
-          console.log("response", resp);
-          console.log("data", userData);
-          toast.success("Account created successfully", { autoClose: 1000 });
-          setUserData({
-            name: "",
-            password: "",
-            email: "",
-          });
-       
+      const resp = await axios.post(
+        "https://codecom-backend.onrender.com/api/auth/signup",
+        userData
+      );
+
+      console.log("response", resp);
+      console.log("data", userData);
+      toast.success("Account created successfully", { autoClose: 1000 });
+      setUserData({
+        name: "",
+        password: "",
+        email: "",
+      });
 
       setTimeout(() => {
         navigate("verifyEmailPage");
@@ -94,7 +96,7 @@ function SignUpAndLogin() {
             <section class="rounded-md bg-transparent">
               <div class="flex items-center justify-center p-2 ">
                 <div class="xl:mx-auto  py-2 xl:w-full xl:max-w-sm 2xl:max-w-md">
-                  <div class="mb-2"></div>
+                  <div class=""></div>
                   <h2 class="text-2xl font-bold leading-tight  bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
                     Sign up to create account
                   </h2>
@@ -108,13 +110,13 @@ function SignUpAndLogin() {
                       Sign In
                     </span>
                   </p>
-                  <form class="mt-3">
+                  <form class="mt-2">
                     <div class="space-y-4">
                       <div>
                         <label class="text-base font-medium text-gray-900">
                           User Name
                         </label>
-                        <div class="mt-2">
+                        <div class="">
                           <input
                             placeholder="Full Name"
                             type="text"
@@ -129,7 +131,7 @@ function SignUpAndLogin() {
                         <label class="text-base font-medium text-gray-900">
                           Email address
                         </label>
-                        <div class="mt-2">
+                        <div class="">
                           <input
                             placeholder="Email"
                             type="email"
@@ -146,7 +148,7 @@ function SignUpAndLogin() {
                             Password
                           </label>
                         </div>
-                        <div class="mt-2">
+                        <div class="">
                           <input
                             autoComplete="current-password"
                             placeholder="Password"
@@ -159,15 +161,15 @@ function SignUpAndLogin() {
                         </div>
                       </div>
                       <p class="mt-2 text-base text-gray-700">
-                    verify your email{" "}
-                    <span
-                      onClick={() => navigate('verifyEmailPage')}
-                      className="text-blue-900 cursor-pointer font-bold"
-                    >
-                      {" "}
-                      Click here
-                    </span>
-                  </p>
+                        verify your email{" "}
+                        <span
+                          onClick={() => navigate("verifyEmailPage")}
+                          className="text-blue-900 cursor-pointer font-bold"
+                        >
+                          {" "}
+                          Click here
+                        </span>
+                      </p>
                       <div>
                         <button
                           onClick={handleSignUp}
@@ -177,7 +179,6 @@ function SignUpAndLogin() {
                           Create Account
                         </button>
                       </div>
-                      
                     </div>
                   </form>
                 </div>
@@ -248,7 +249,7 @@ function SignUpAndLogin() {
                         <button
                           onClick={handleLogin}
                           class=" inline-flex mt-2  w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80   bg-gradient-to-br from-yellow-200 via-orange-600 to-purple-800"
-                          type="button"
+                          type="submit"
                         >
                           Sign In
                         </button>
