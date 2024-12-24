@@ -108,7 +108,7 @@ function SignUpAndLogin() {
                       Sign In
                     </span>
                   </p>
-                  <form class="mt-5">
+                  <form class="mt-3">
                     <div class="space-y-4">
                       <div>
                         <label class="text-base font-medium text-gray-900">
@@ -158,6 +158,16 @@ function SignUpAndLogin() {
                           />
                         </div>
                       </div>
+                      <p class="mt-2 text-base text-gray-700">
+                    verify your email{" "}
+                    <span
+                      onClick={() => navigate('verifyEmailPage')}
+                      className="text-blue-900 cursor-pointer font-bold"
+                    >
+                      {" "}
+                      Click here
+                    </span>
+                  </p>
                       <div>
                         <button
                           onClick={handleSignUp}
@@ -167,6 +177,7 @@ function SignUpAndLogin() {
                           Create Account
                         </button>
                       </div>
+                      
                     </div>
                   </form>
                 </div>
