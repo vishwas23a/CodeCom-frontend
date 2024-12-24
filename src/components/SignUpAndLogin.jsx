@@ -20,6 +20,8 @@ function SignUpAndLogin() {
       toast.error("All fields are required", { autoClose: 1000 });
       return;
     }
+    console.log(userData);
+    
     try {
       const resp = await axios.post(
         "https://codecom-backend.onrender.com/api/auth/login",
@@ -40,8 +42,9 @@ function SignUpAndLogin() {
         navigate("Navbar");
       }, 2000);
     } catch (error) {
-      console.log("failed");
+      
       toast.error("Failed to login", { autoClose: 1000 });
+      console.log("failed",error);
     }
   };
   const handleSignUp = async (e) => {
