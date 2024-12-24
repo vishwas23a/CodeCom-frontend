@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function UserEditCard(props) {
-  const { userInputEmail,visibility } = props;
+  const { userInputEmail,visibility,onUpdate } = props;
   const [userInputData, setUserInputData] = useState({
     inputName: "",
     inputNumber: "",
@@ -46,6 +46,7 @@ function UserEditCard(props) {
     setTimeout(()=>{
         visibility();
     },2000)
+    onUpdate();
     
       
     } catch (error) {

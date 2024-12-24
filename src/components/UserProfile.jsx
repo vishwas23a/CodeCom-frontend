@@ -15,7 +15,7 @@ function UserProfile() {
       number:""
     }
   )
-  useEffect(()=>{
+
     const fetchedData=async()=>{
       try {
         console.log("hello");
@@ -36,8 +36,12 @@ function UserProfile() {
         
          
   }
+  useEffect(()=>{
   fetchedData();  
-},[userData])  
+},[])  
+const handleUpdate=()=>{
+  fetchedData();
+}
 
 
   return (
@@ -62,6 +66,7 @@ visibleValue={()=>setVisible(false)}
           :
            <UserEditCard 
            userInputEmail={userData.email}
+           onUpdate={handleUpdate}
            visibility={()=>setVisible(true)}
            />
           }
