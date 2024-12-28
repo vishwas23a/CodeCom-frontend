@@ -26,7 +26,7 @@ function Navbar() {
   const logout = async () => {
     try {
       await axios.post(
-        "https://codecom-backend.onrender.com/api/auth/logout",
+        "http://localhost:2024/api/auth/logout",
         {},
         {
           withCredentials: true,

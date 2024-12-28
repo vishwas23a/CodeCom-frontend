@@ -1,22 +1,45 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import Frame from "./Frame";
+import { Slide, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Dashboard() {
   const navigate = useNavigate();
-  const [dataOfUser, setDataOfUser] = useState({
-    email: "",
-    name: "",
-  });
+  const [input,setInput] = useState("");
+
+  const joinCommunity=async()=>{
+    if(!input){
+      return toast.error("Please fill the field",{autoClose:1000})
+    }
+    try {
+      const response=await axios.post("http://localhost:2024/api/community/joinCommunity",{code:input},{withCredentials:true});
+      
+      console.log(response.data);
+      toast.success("Community joined successfully",{autoClose:1000})
+      setInput("");
+
+
+
+      setTimeout(() => {  
+        navigate("/Community")
+      },1000)
+      
+    } catch (error) {
+      console.log(error, "failed to join community");
+      toast.error("Failed to join community",{autoClose:1000})      
+      
+    }
+  }
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
         await axios.get(
-          "https://codecom-backend.onrender.com/api/auth/check-Auth",
+          "http://localhost:2024/api/auth/check-Auth",
           {
             withCredentials: true,
           }
@@ -29,23 +52,7 @@ function Dashboard() {
 
     checkAuth();
   }, [navigate]);
-  // const fetchUserData = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "http://localhost:2024/api/auth/check-Auth",
-  //       { withCredentials: true }
-  //     );
-  //     setDataOfUser({
-  //       name: response.data.user.name,
-  //       email: response.data.user.email,
-  //     });
-  //     console.log("User data:", response.data);
-  //     console.log(dataOfUser);
-  //   } catch (error) {
-  //     console.error("Failed to fetch user data", error);
-  //   }
-  // };
-
+ 
   return (
     <div className="min-h-screen w-full p-10   relative overflow-hidden">
       <div className="  ">
@@ -79,6 +86,7 @@ function Dashboard() {
           delay={5}
         />
       </div>
+      <ToastContainer transition={Slide} />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -101,9 +109,9 @@ function Dashboard() {
             </p>
 
             <div class=" pb-2 flex justify-center">
-              <button class="w-36 mt-4 h-10 font-semibold rounded-md shadow-lg border-2 border-gray-400 hover:scale-90 duration-500">
+           <NavLink to="/Navbar/CommunityForm">  <button  class="w-36 mt-4 h-10 font-semibold rounded-md shadow-lg border-2 border-gray-400 hover:scale-90 duration-500">
                 Create
-              </button>
+              </button></NavLink> 
             </div>
           </div>
         </div>
@@ -114,6 +122,10 @@ function Dashboard() {
             </h4>
             <div>
               <input
+              value={
+                input
+              }
+              onChange={(e)=>setInput(e.target.value)}
                 type="text"
                 placeholder="Enter Code"
                 className="p-2 border-gray-300 border-2 rounded mt-4 "
@@ -121,7 +133,7 @@ function Dashboard() {
             </div>
 
             <div class=" pb-2 flex justify-center">
-              <button class="w-36 mt-4 h-10 font-semibold rounded-md shadow-lg border-2 border-gray-400 hover:scale-90 duration-500">
+              <button onClick={joinCommunity}  class="w-36 mt-4 h-10 font-semibold rounded-md shadow-lg border-2 border-gray-400 hover:scale-90 duration-500">
                 Join
               </button>
             </div>

@@ -11,6 +11,8 @@ import Navbar from './components/Navbar.jsx'
 import About from './components/About.jsx'
 import Contact from './components/Contact.jsx'
 import UserProfile from './components/UserProfile.jsx'
+import CommunityForm from './components/community/CommunityForm.jsx'
+import CommunityPage from './components/community/CommunityPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -46,9 +48,19 @@ const router = createBrowserRouter([
       {
         path: 'UserProfile',
         element: <UserProfile/>
+      },
+      {
+        path:'CommunityForm',
+        element:<CommunityForm/>
       }
-    ]
+    ],
+
+    
   },
+  {
+    path: 'Community',
+    element: <CommunityPage />
+  }
 
 ])
 

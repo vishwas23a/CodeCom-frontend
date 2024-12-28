@@ -12,7 +12,7 @@ function VerifyEmailPage() {
     e.preventDefault();
     try {
     await  axios
-        .post("https://codecom-backend.onrender.com/api/auth/verify-email", {code:inputData})
+        .post("http://localhost:2024/api/auth/verify-email", {code:inputData})
         .then((response) => {
           console.log(response);
   
@@ -79,9 +79,9 @@ function VerifyEmailPage() {
             <h1 onClick={()=> navigate('/')} className="font-extrabold cursor-pointer text-2xl">X</h1>
             </div> 
               <h1 className="text-center bg-gradient-to-r from-orange-500 to-purple-700 bg-clip-text text-transparent font-semibold text-2xl">Enter Verification Code</h1>
-             
-            
-            <div>
+              <div> 
+      
+           
               <input
                 type="text"
                 maxLength={6}
@@ -92,6 +92,7 @@ function VerifyEmailPage() {
                 placeholder="Code"
                 className="p-3  border border-black focus:outline-none focus:ring-2   focus:ring-orange-300 rounded-xl"
               />
+                    <p className=" text-sm text-center">Check Your mail</p>
             </div>
             <div className="flex justify-center pb-4">
               <button

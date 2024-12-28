@@ -24,7 +24,7 @@ function SignUpAndLogin() {
     
     try {
       const resp = await axios.post(
-        "https://codecom-backend.onrender.com/api/auth/login",
+        "http://localhost:2024/api/auth/login",
         userData,
         { withCredentials: true }
       );
@@ -61,7 +61,7 @@ function SignUpAndLogin() {
     }
     try {
       const resp = await axios.post(
-        "https://codecom-backend.onrender.com/api/auth/signup",
+        "http://localhost:2024/api/auth/signup",
         userData
       );
 

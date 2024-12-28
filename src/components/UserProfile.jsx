@@ -12,7 +12,8 @@ function UserProfile() {
     {
       name:"",
       email:"",
-      number:""
+      number:"",
+      communityList:[]
     }
   )
 
@@ -20,13 +21,14 @@ function UserProfile() {
       try {
         console.log("hello");
         
-        const resp= await axios.get("https://codecom-backend.onrender.com/api/user/userProfile",{withCredentials:true})
+        const resp= await axios.get("http://localhost:2024/api/user/userProfile",{withCredentials:true})
         console.log(resp.data);
         setUserData(
           {
             name:resp.data.name,
            email:resp.data.email,
-           number:resp.data.number
+           number:resp.data.number,
+           communityList:resp.data.communityList
           }
         )
       } catch (error) {
@@ -81,6 +83,7 @@ visibleValue={()=>setVisible(false)}
                 {" "}
                 Joined Community
               </h1>
+            
             </div>
           </div>
         </div>
