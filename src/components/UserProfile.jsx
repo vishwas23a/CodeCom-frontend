@@ -4,6 +4,8 @@ import axios from "axios";
 
 import UserEditCard from "./UserEditCard";
 import UserProfileCardd from "./UserProfileCardd";
+import JoinedCommunity from "./JoinedCommunity";
+import CreatedCommunity from "./CreatedCommunity";
 
 function UserProfile() {
 
@@ -54,8 +56,8 @@ const handleUpdate=()=>{
         alt=""
       />
 
-      <div className=" w-full flex justify-center items-center h-screen">
-        <div className=" rounded-3xl w-[85%] mt-10  bg-opacity-10 bg-black  h-[85%] flex gap-8 p-8">
+      <div className=" w-full flex justify-center   items-center h-screen">
+        <div className=" rounded-3xl w-[85%] mt-10    bg-opacity-10 bg-black  h-[85%] flex gap-8 p-8">
           {visible ===true ?
 
 <UserProfileCardd 
@@ -73,17 +75,22 @@ visibleValue={()=>setVisible(false)}
            />
           }
           <div className=" flex flex-col justify-between  w-full ">
-            <div className=" bg-white h-52 shadow-lg  w-full rounded-xl ">
-              <h1 className="font-bold text-center text-xl  bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text text-transparent">
-                My Communuty
-              </h1>
+            <div className=" bg-white h-52 shadow-lg p-2  w-full rounded-xl overflow-y-scroll ">  
+            <h1 className="font-bold    text-center text-xl  bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text text-transparent">
+          {" "}
+          Created Community
+        </h1>
+        <div className= "mt-6"> 
+              <CreatedCommunity/>
+              </div>
             </div>
-            <div className=" bg-white shadow-lg  h-52 rounded-xl w-full">
-              <h1 className="font-bold text-center text-xl  bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text text-transparent">
+            <div className=" bg-white shadow-lg overflow-auto p-2   h-52 rounded-xl w-full">
+            <h1 className="font-bold text-center text-xl  bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text text-transparent">
                 {" "}
                 Joined Community
               </h1>
-            
+              <div className="mt-6">
+            <JoinedCommunity/></div>
             </div>
           </div>
         </div>
