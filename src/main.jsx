@@ -57,8 +57,9 @@ const router = createBrowserRouter([
 
     
   },
+ 
   {
-    path: 'Community',
+    path: 'Community/:name',
     element: <CommunityPage />
   }
 

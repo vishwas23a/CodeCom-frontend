@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 function JoinedCommunity() {
     const [communityList, setCommunityList] = useState([]);
-
+  const navigate  = useNavigate();
     const fetchedData = async () => {
         try {
             const response=await  axios.get("http://localhost:2024/api/community/getJoinedCommunity",{withCredentials:true})
@@ -18,9 +19,9 @@ function JoinedCommunity() {
     }
     useEffect(() => {
         fetchedData();
-    },[])
-    const enterCommunity=async(communityId)=>{
-        navigate(`/community/${communityId}`)
+    },[navigate])
+    const enterCommunity=async(communityName)=>{
+        navigate(`/community/${communityName}`)
 
     }
 
@@ -42,54 +43,13 @@ function JoinedCommunity() {
                  
                  
                    
-                
-<button
-  class="group relative inline-flex items-center justify-center px-4 py-1 text-md font-bold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-60"
+     <div className=' flex justify-center mt-2 '>           
+<button onClick={()=>enterCommunity(community.name)}
+  class="px-6 z-30 py-1 bg-rose-400 rounded-md text-white relative font-semibold after:-z-20 after:absolute after:h-1 after:w-1 after:bg-rose-800 after:left-5 overflow-hidden after:bottom-0 after:translate-y-full after:rounded-md after:hover:scale-[300] after:hover:transition-all after:hover:duration-700 after:transition-all after:duration-700 transition-all duration-700 [text-shadow:3px_5px_2px_#be123c;] hover:[text-shadow:2px_2px_2px_#fda4af] text-2xl"
 >
-  <div
-    class="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-500 rounded-full transition-all duration-300 group-hover:scale-70 animate-gradient"
-  ></div>
+ Enter
+</button></div> 
 
-  <div
-    class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl"
-  ></div>
-
-  <div class="absolute inset-0 overflow-hidden rounded-full">
-    <div class="glitter-container">
-      <div class="glitter"></div>
-      <div class="glitter"></div>
-      <div class="glitter"></div>
-    </div>
-  </div>
-
-  <div
-    class="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"
-  ></div>
-
-  <div class="absolute inset-0 rounded-full overflow-hidden">
-    <div class="wave"></div>
-  </div>
-
-  <span class="relative z-10 flex items-center gap-1">
-    <span class="tracking-wider">Enter!</span>
-    <svg
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      fill="none"
-      class="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-1"
-    >
-      <path
-        d="M13 7l5 5m0 0l-5 5m5-5H6"
-        stroke-width="2"
-        stroke-linejoin="round"
-        stroke-linecap="round"
-      ></path>
-    </svg>
-    <span
-      class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-    ></span>
-  </span>
-</button>
 
 
                        </div>

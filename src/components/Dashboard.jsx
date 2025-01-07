@@ -25,7 +25,7 @@ function Dashboard() {
 
 
       setTimeout(() => {  
-        navigate("/Community")
+        navigate(`/Community${response.data.community.name}`);
       },1000)
       
     } catch (error) {

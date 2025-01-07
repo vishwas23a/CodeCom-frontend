@@ -28,8 +28,9 @@ function CommunityForm() {
             code: "",
             description: "",
           });
+          const communityName=response.data.community.name;
           setTimeout(() => {
-            navigate("/Community")
+            navigate(`/Community/${communityName}`)
           },1000)
 
     } catch (error) {

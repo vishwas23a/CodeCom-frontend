@@ -34,7 +34,7 @@ function UserEditCard(props) {
  
     try {
       console.log(userInputData);
-    const data= await  axios.post("https://codecom-backend.onrender.com/api/user/updateUser",payload,{withCredentials: true})
+    const data= await  axios.post("http://localhost:2024/api/user/updateUser",payload,{withCredentials: true})
     console.log(data);
     
     toast.success("Updated Successfully",{autoClose:1000})
