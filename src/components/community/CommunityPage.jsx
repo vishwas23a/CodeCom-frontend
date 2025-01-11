@@ -1,18 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import logo from "../../images/eco-light.png";
+
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 function CommunityPage() {
   const [visible, setVisible] = useState("");
   const [infoVisible, setInfoVisible] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const { name } = useParams();
   const decodeName = decodeURIComponent(name);
-  console.log(decodeName);
+
   const [community, setCommunity] = useState(() => {
     const savedCommunity = localStorage.getItem(decodeName);
-    return savedCommunity ? JSON.parse(savedCommunity) : {};
+    return savedCommunity ? JSON.parse(savedCommunity) : { members: [] };
   });
 
   const fetchData = async () => {
@@ -21,10 +22,14 @@ function CommunityPage() {
         `http://localhost:2024/api/community/${decodeName}`,
         { withCredentials: true }
       );
-      setCommunity(response.data);
-      localStorage.setItem(decodeName, JSON.stringify(response.data));
+      setCommunity(response.data.community);
+      localStorage.setItem(decodeName, JSON.stringify(response.data.community));
+      const { currentUserId } = response.data;
 
-      console.log(response.data);
+      if (community.admin._id === currentUserId) {
+        setIsAdmin(true);
+      }
+      console.log(response.data.community);
     } catch (error) {
       console.log("community data not found");
     }
@@ -36,20 +41,6 @@ function CommunityPage() {
 
   return (
     <div>
-      {/* <h1>{community.name}</h1>
-      <h2>{community.description}</h2>
-      <h1>{community.code}</h1>
-        <h1>Admin:{community.admin?.name}</h1>
-        <h1>Admin email:{community.admin?.email}</h1>
-      <h1> member list :-{
-        
-        community.members.map((member)=>(
-          <div key={member.name}>
-          <p>{member.name}</p>
-          <p>{member.email}</p></div>
-        ))
-        }</h1> */}
-
       <div className="flex justify-between items-center px-16 mt-2">
         <div>
           <NavLink to="/Navbar/UserProfile">
@@ -126,29 +117,31 @@ function CommunityPage() {
                       Strength: {community.members.length}
                     </p>
                   </div>
-                  <div className="flex  justify-between">
-                    <div class="inline-block cursor-pointer font-mono text-sm font-bold bg-slate-500 text-white py-2 px-4 rounded-full transition ease-in-out delay-75 duration-100 hover:-translate-y-1 hover:scale-110 transform hover:opacity-75">
-                      Edit
-                    </div>
+                  {isAdmin && (
+                    <div className="flex  justify-between">
+                      <div class="inline-block cursor-pointer font-mono text-sm font-bold bg-slate-500 text-white py-2 px-4 rounded-full transition ease-in-out delay-75 duration-100 hover:-translate-y-1 hover:scale-110 transform hover:opacity-75">
+                        Edit
+                      </div>
 
-                    <button class="inline-flex items-center px-3 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-full hover:-translate-y-1 hover:scale-110">
-                      <svg
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        class="h-5 w-5 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                          stroke-width="2"
-                          stroke-linejoin="round"
-                          stroke-linecap="round"
-                        ></path>
-                      </svg>
-                      Delete
-                    </button>
-                  </div>
+                      <button class="inline-flex items-center px-3 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-full hover:-translate-y-1 hover:scale-110">
+                        <svg
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          class="h-5 w-5 mr-2"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            stroke-width="2"
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                          ></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -157,16 +150,18 @@ function CommunityPage() {
       </div>
       <div className="flex mt-4  ">
         <div className="w-72  shadow-inner shadow-zinc-500  fixed h-screen">
-          <h1 className="text-center mt-2 font-bold text-zinc-700 ">Members </h1>
+          <h1 className="text-center mt-2 font-bold text-zinc-700 ">
+            Members{" "}
+          </h1>
           <div className="mt-4  flex flex-col justify-center items-center">
-          {community.members.map((member)=>(
-            <ul key={member.name} className=" w-full ">
-            <li className="bg-zinc-700  text-zinc-100 p-2">{member.email}</li></ul>
-          ))
-          
-          }</div>
-
-
+            {community.members?.map((member) => (
+              <ul key={member.name} className=" w-full ">
+                <li className="bg-zinc-700  text-zinc-100 p-2">
+                  {member.email}
+                </li>
+              </ul>
+            ))}
+          </div>
         </div>
         <div className="shadow-inner shadow-zinc-500 h-screen  w-3/4 left-80 fixed">
           <ul className="flex  w-full justify-evenly items-center">
