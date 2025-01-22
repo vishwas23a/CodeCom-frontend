@@ -39,8 +39,8 @@ function Navbar() {
   };
 
   return (
-    <div>
-      <nav className="flex w-full justify-between items-center px-6  py-2 h-14 bg-opacity-20 bg-transparent fixed z-20 ">
+    <div className="">
+      <nav className="flex w-full justify-between overflow-hidde rounded-full  items-center px-6  py-2 h-14    fixed z-20 ">
         <img src={logo} className="h-10 w-10" alt="" />
         <div className="flex gap-24 justify-between ">
           <ul className=" flex gap-8 items-center ">
