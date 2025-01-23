@@ -95,7 +95,7 @@ function Home() {
           />
         </div>
 
-        <div className="border border-orange-200 w-full min-h-[500px] rounded-xl relative">
+        <div className="border border-orange-200 w-full min-h-screen md:min-h-[500px]  rounded-xl relative">
           <div className="flex justify-between items-center mt-4 px-4 md:px-10">
             <div>
               <img src={comImage} alt="" className="h-10 w-10 md:h-14 md:w-14" />
