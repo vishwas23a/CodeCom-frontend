@@ -51,7 +51,7 @@ function Dashboard() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen w-full p-4 sm:p-6 md:p-10 relative overflow-hidden">
+    <div className=" w-full p-4 sm:p-6 md:p-2 relative overflow-hidden">
       <div className="hidden md:block">
         <Frame
           color="bg-red-400"
