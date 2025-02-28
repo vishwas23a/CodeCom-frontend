@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Chat from "../chat/Chat";
 
 function CommunityPage() {
   const [visible, setVisible] = useState("");
@@ -212,7 +213,11 @@ function CommunityPage() {
 
           <div className="p-4">
             {visible === "chat" ? (
-              <div>chatt</div>
+              <div>
+
+              <Chat community={community}/>
+
+              </div>
             ) : visible === "task" ? (
               <div>task</div>
             ) : visible === "code" ? (
