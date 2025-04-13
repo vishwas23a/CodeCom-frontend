@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Chat from "../chat/Chat";
+import CodeTogether from "../chat/CodeTogether";
 
 function CommunityPage() {
   const [visible, setVisible] = useState("");
@@ -219,9 +220,9 @@ function CommunityPage() {
 
               </div>
             ) : visible === "task" ? (
-              <div>task</div>
+              <div>Task</div>
             ) : visible === "code" ? (
-              <div>code</div>
+              <div><CodeTogether community={community}/></div>
             ) : (
               <div className="flex w-full h-[60vh] justify-center items-center">
                 <h1 className="text-2xl md:text-5xl text-gray-300 font-bold text-center">
