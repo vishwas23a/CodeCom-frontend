@@ -77,7 +77,7 @@ useEffect(() => {
     return () => chatContainer.removeEventListener("scroll", checkIfAtBottom);
 }, []);
 
-// 🔥 Auto-scroll only if the user is at the bottom
+
 useLayoutEffect(() => {
     if (isAtBottom) {
         chatContainerRef.current?.scrollTo({ top: chatContainerRef.current.scrollHeight, behavior: "smooth" });
@@ -91,10 +91,10 @@ useLayoutEffect(() => {
       <div  ref={chatContainerRef}
       className="h-80 overflow-y-auto bg-white p-2 shadow-inner relative bg-cover bg-center"
   style={{
-    backgroundImage: `url(${chatBack})`,  // Set background image
-    backgroundSize: "cover",             // Ensure it covers the entire area
+    backgroundImage: `url(${chatBack})`, 
+    backgroundSize: "cover",             
     backgroundPosition: "center",
-             // Center the image
+          
   }}>
       {messages && messages.length > 0 ? (
     messages.map((msg, index) => (
@@ -104,7 +104,7 @@ useLayoutEffect(() => {
         </div>
     ))
 ) : (
-    <p>No messages yet...</p>
+    <p className='text-gray-700'>No messages yet...</p>
 )}
                  
 
