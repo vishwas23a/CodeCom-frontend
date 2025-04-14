@@ -79,8 +79,6 @@ function CodeTogether({ community }) {
         socket.emit("joinCommunity", community.code);
 
         socket.on("receiveCode", ({newCode}) => {
-            console.log("newCode")
-            console.log(newCode)
             setCodes(newCode);
         });
 
