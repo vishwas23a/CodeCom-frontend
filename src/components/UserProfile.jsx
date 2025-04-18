@@ -17,7 +17,6 @@ function UserProfile() {
 
   const fetchedData = async () => {
     try {
-      console.log("hello");
       const resp = await axios.get("http://localhost:2024/api/user/userProfile", {
         withCredentials: true,
       });
