@@ -198,12 +198,7 @@ function CommunityPage() {
             >
               Chat
             </li>
-            <li
-              onClick={() => setVisible("task")}
-              className="cursor-pointer border border-zinc-300 w-full text-center p-2 hover:bg-gray-50"
-            >
-              Daily Task
-            </li>
+            
             <li
               onClick={() => setVisible("code")}
               className="cursor-pointer border border-zinc-300 w-full text-center p-2 hover:bg-gray-50"
@@ -219,9 +214,7 @@ function CommunityPage() {
               <Chat community={community}/>
 
               </div>
-            ) : visible === "task" ? (
-              <div>Task</div>
-            ) : visible === "code" ? (
+            )  : visible === "code" ? (
               <div><CodeTogether community={community}/></div>
             ) : (
               <div className="flex w-full h-[60vh] justify-center items-center">
